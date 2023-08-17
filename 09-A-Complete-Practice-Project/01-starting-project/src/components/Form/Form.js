@@ -1,0 +1,50 @@
+import styles from "./Form.module.css";
+
+const Form = ({ onSubmit }) => {
+  const submitHandler = (event) => {
+    event.preventDefault();
+    onSubmit({
+      "current-savings": event.target["current-savings"].value,
+      "yearly-contribution": event.target["yearly-contribution"].value,
+      "expected-return": event.target["expected-return"].value,
+      duration: event.target["duration"].value,
+    });
+  };
+
+  return (
+    <form className={styles.form} onSubmit={submitHandler}>
+      <div className={styles["input-group"]}>
+        <p>
+          <label htmlFor="current-savings">Current Savings ($)</label>
+          <input type="number" id="current-savings" />
+        </p>
+        <p>
+          <label htmlFor="yearly-contribution">Yearly Savings ($)</label>
+          <input type="number" id="yearly-contribution" />
+        </p>
+      </div>
+      <div className={styles["input-group"]}>
+        <p>
+          <label htmlFor="expected-return">
+            Expected Interest (%, per year)
+          </label>
+          <input type="number" id="expected-return" />
+        </p>
+        <p>
+          <label htmlFor="duration">Investment Duration (years)</label>
+          <input type="number" id="duration" />
+        </p>
+      </div>
+      <p className={styles.actions}>
+        <button type="reset" className={styles.buttonAlt}>
+          Reset
+        </button>
+        <button type="submit" className={styles.button}>
+          Calculate
+        </button>
+      </p>
+    </form>
+  );
+};
+
+export default Form;

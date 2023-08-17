@@ -1,96 +1,65 @@
-import logo from './assets/investment-calculator-logo.png';
+import React, { useEffect, useState } from "react";
+import Form from "./components/Form/Form";
+import Header from "./components/Header/Header";
+import Table from "./components/Table/Table";
 
 function App() {
+  const [finalYearlyData, setFinalYearlyData] = useState([]);
+
   const calculateHandler = (userInput) => {
     // Should be triggered when form is submitted
     // You might not directly want to bind it to the submit event on the form though...
 
     const yearlyData = []; // per-year results
 
-    let currentSavings = +userInput['current-savings']; // feel free to change the shape of this input object!
-    const yearlyContribution = +userInput['yearly-contribution']; // as mentioned: feel free to change the shape...
-    const expectedReturn = +userInput['expected-return'] / 100;
-    const duration = +userInput['duration'];
+    let currentSavings = +userInput["current-savings"]; // feel free to change the shape of this input object!
+    const yearlyContribution = +userInput["yearly-contribution"]; // as mentioned: feel free to change the shape...
+    const expectedReturn = +userInput["expected-return"] / 100;
+    const duration = +userInput["duration"];
+    let totalInterest = 0,
+      totalYearlyContribution = 0;
 
     // The below code calculates yearly results (total savings, interest etc)
     for (let i = 0; i < duration; i++) {
       const yearlyInterest = currentSavings * expectedReturn;
       currentSavings += yearlyInterest + yearlyContribution;
+      totalInterest += yearlyInterest;
+      totalYearlyContribution += yearlyContribution;
+
       yearlyData.push({
         // feel free to change the shape of the data pushed to the array!
         year: i + 1,
-        yearlyInterest: yearlyInterest,
-        savingsEndOfYear: currentSavings,
-        yearlyContribution: yearlyContribution,
+        savingsEndOfYear:
+          currentSavings % 1 === 0 ? currentSavings : currentSavings.toFixed(2),
+        yearlyInterest:
+          yearlyInterest % 1 === 0 ? yearlyInterest : yearlyInterest.toFixed(2),
+        totalInterest:
+          totalInterest % 1 === 0 ? totalInterest : totalInterest.toFixed(2),
+        totalYearlyContribution:
+          totalYearlyContribution % 1 === 0
+            ? totalYearlyContribution
+            : totalYearlyContribution.toFixed(2),
       });
     }
-
     // do something with yearlyData ...
+
+    setFinalYearlyData((prevData) => {
+      return [...prevData, ...yearlyData];
+    });
   };
 
   return (
     <div>
-      <header className="header">
-        <img src={logo} alt="logo" />
-        <h1>Investment Calculator</h1>
-      </header>
-
-      <form className="form">
-        <div className="input-group">
-          <p>
-            <label htmlFor="current-savings">Current Savings ($)</label>
-            <input type="number" id="current-savings" />
-          </p>
-          <p>
-            <label htmlFor="yearly-contribution">Yearly Savings ($)</label>
-            <input type="number" id="yearly-contribution" />
-          </p>
-        </div>
-        <div className="input-group">
-          <p>
-            <label htmlFor="expected-return">
-              Expected Interest (%, per year)
-            </label>
-            <input type="number" id="expected-return" />
-          </p>
-          <p>
-            <label htmlFor="duration">Investment Duration (years)</label>
-            <input type="number" id="duration" />
-          </p>
-        </div>
-        <p className="actions">
-          <button type="reset" className="buttonAlt">
-            Reset
-          </button>
-          <button type="submit" className="button">
-            Calculate
-          </button>
-        </p>
-      </form>
+      <Header />
+      <Form onSubmit={calculateHandler} />
 
       {/* Todo: Show below table conditionally (only once result data is available) */}
       {/* Show fallback text if no data is available */}
-
-      <table className="result">
-        <thead>
-          <tr>
-            <th>Year</th>
-            <th>Total Savings</th>
-            <th>Interest (Year)</th>
-            <th>Total Interest</th>
-            <th>Invested Capital</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>YEAR NUMBER</td>
-            <td>TOTAL SAVINGS END OF YEAR</td>
-            <td>INTEREST GAINED IN YEAR</td>
-            <td>TOTAL INTEREST GAINED</td>
-            <td>TOTAL INVESTED CAPITAL</td>
-          </tr>
-        </tbody>
-      </table>
+      {finalYearlyData && finalYearlyData.length > 0 ? (
+        <Table tableData={finalYearlyData} />
+      ) : (
+        <h2 style={{ textAlign: "center" }}>No Data Calculated</h2>
+      )}
     </div>
   );
 }
