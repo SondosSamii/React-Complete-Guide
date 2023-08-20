@@ -1,6 +1,13 @@
 import styles from "./Table.module.css";
 
 const Table = ({ tableData }) => {
+  const formatter = new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: "USD",
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  });
+
   return (
     <table className={styles.result}>
       <thead>
@@ -17,10 +24,10 @@ const Table = ({ tableData }) => {
           return (
             <tr key={index}>
               <td>{data.year}</td>
-              <td>{data.savingsEndOfYear}</td>
-              <td>{data.yearlyInterest}</td>
-              <td>{data.totalInterest}</td>
-              <td>{data.totalYearlyContribution}</td>
+              <td>{formatter.format(data.savingsEndOfYear)}</td>
+              <td>{formatter.format(data.yearlyInterest)}</td>
+              <td>{formatter.format(data.totalInterest)}</td>
+              <td>{formatter.format(data.totalYearlyContribution)}</td>
             </tr>
           );
         })}

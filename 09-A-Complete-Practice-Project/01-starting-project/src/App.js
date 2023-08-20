@@ -29,16 +29,10 @@ function App() {
       yearlyData.push({
         // feel free to change the shape of the data pushed to the array!
         year: i + 1,
-        savingsEndOfYear:
-          currentSavings % 1 === 0 ? currentSavings : currentSavings.toFixed(2),
-        yearlyInterest:
-          yearlyInterest % 1 === 0 ? yearlyInterest : yearlyInterest.toFixed(2),
-        totalInterest:
-          totalInterest % 1 === 0 ? totalInterest : totalInterest.toFixed(2),
-        totalYearlyContribution:
-          totalYearlyContribution % 1 === 0
-            ? totalYearlyContribution
-            : totalYearlyContribution.toFixed(2),
+        savingsEndOfYear: currentSavings,
+        yearlyInterest: yearlyInterest,
+        totalInterest: totalInterest,
+        totalYearlyContribution: totalYearlyContribution,
       });
     }
     // do something with yearlyData ...
