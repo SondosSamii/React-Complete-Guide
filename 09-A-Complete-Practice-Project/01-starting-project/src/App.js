@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import Form from "./components/Form/Form";
+import InvestmentCalculator from "./components/InvestmentCalculator/InvestmentCalculator";
 import Header from "./components/Header/Header";
-import Table from "./components/Table/Table";
+import ResultsTable from "./components/ResultsTable/ResultsTable";
 
 function App() {
   const [userInput, setUserInput] = useState(null);
@@ -38,10 +38,10 @@ function App() {
     <div>
       <Header />
 
-      <Form onSubmit={calculateHandler} />
+      <InvestmentCalculator onCalculate={calculateHandler} />
 
       {userInput ? (
-        <Table
+        <ResultsTable
           tableData={yearlyData}
           initialSavings={+userInput["current-savings"]}
         />

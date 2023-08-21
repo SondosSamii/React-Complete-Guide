@@ -1,6 +1,6 @@
-import styles from "./Table.module.css";
+import styles from "./ResultsTable.module.css";
 
-const Table = ({ tableData, initialSavings }) => {
+const ResultsTable = ({ tableData, initialSavings }) => {
   const formatter = new Intl.NumberFormat("en-US", {
     style: "currency",
     currency: "USD",
@@ -28,7 +28,9 @@ const Table = ({ tableData, initialSavings }) => {
               <td>{formatter.format(data.yearlyInterest)}</td>
               <td>{formatter.format(data.totalInterest)}</td>
               <td>
-                {formatter.format(initialSavings + data.yearlyContribution * data.year)}
+                {formatter.format(
+                  initialSavings + data.yearlyContribution * data.year
+                )}
               </td>
             </tr>
           );
@@ -38,4 +40,4 @@ const Table = ({ tableData, initialSavings }) => {
   );
 };
 
-export default Table;
+export default ResultsTable;

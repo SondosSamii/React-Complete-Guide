@@ -1,5 +1,5 @@
 import { useState } from "react";
-import styles from "./Form.module.css";
+import styles from "./InvestmentCalculator.module.css";
 
 const initialUserInput = {
   "current-savings": 1000,
@@ -8,12 +8,12 @@ const initialUserInput = {
   duration: 10,
 };
 
-const Form = ({ onSubmit }) => {
+const InvestmentCalculator = ({ onCalculate }) => {
   const [userInput, setUserInput] = useState(initialUserInput);
 
   const submitHandler = (event) => {
     event.preventDefault();
-    onSubmit(userInput);
+    onCalculate(userInput);
   };
 
   const resetHandler = () => {
@@ -98,4 +98,4 @@ const Form = ({ onSubmit }) => {
   );
 };
 
-export default Form;
+export default InvestmentCalculator;
