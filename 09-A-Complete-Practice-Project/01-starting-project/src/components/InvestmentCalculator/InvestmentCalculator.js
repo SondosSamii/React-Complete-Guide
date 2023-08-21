@@ -1,5 +1,5 @@
 import { useState } from "react";
-import styles from "./InvestmentCalculator.module.css";
+import classes from "./InvestmentCalculator.module.css";
 
 const initialUserInput = {
   "current-savings": 1000,
@@ -17,8 +17,8 @@ const InvestmentCalculator = ({ onCalculate }) => {
   };
 
   const resetHandler = () => {
-    console.log("RESET!");
     setUserInput(initialUserInput);
+    onCalculate(initialUserInput);
   };
 
   const inputChangeHandler = (input, event) => {
@@ -31,8 +31,8 @@ const InvestmentCalculator = ({ onCalculate }) => {
   };
 
   return (
-    <form className={styles.form} onSubmit={submitHandler}>
-      <div className={styles["input-group"]}>
+    <form className={classes.form} onSubmit={submitHandler}>
+      <div className={classes["input-group"]}>
         <p>
           <label htmlFor="current-savings">Current Savings ($)</label>
           <input
@@ -56,7 +56,7 @@ const InvestmentCalculator = ({ onCalculate }) => {
           />
         </p>
       </div>
-      <div className={styles["input-group"]}>
+      <div className={classes["input-group"]}>
         <p>
           <label htmlFor="expected-return">
             Expected Interest (%, per year)
@@ -82,15 +82,15 @@ const InvestmentCalculator = ({ onCalculate }) => {
           />
         </p>
       </div>
-      <p className={styles.actions}>
+      <p className={classes.actions}>
         <button
           type="reset"
-          className={styles.buttonAlt}
+          className={classes.buttonAlt}
           onClick={resetHandler}
         >
           Reset
         </button>
-        <button type="submit" className={styles.button}>
+        <button type="submit" className={classes.button}>
           Calculate
         </button>
       </p>
