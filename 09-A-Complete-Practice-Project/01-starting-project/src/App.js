@@ -46,7 +46,7 @@ function App() {
           initialSavings={+userInput["current-savings"]}
         />
       ) : (
-        <h2 style={{ textAlign: "center" }}>No Data Calculated</h2>
+        <h2 style={{ textAlign: "center" }}>No Investment Calculated</h2>
       )}
     </div>
   );
