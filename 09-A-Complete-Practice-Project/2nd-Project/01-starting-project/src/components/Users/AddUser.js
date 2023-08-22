@@ -16,6 +16,8 @@ const AddUser = ({ onAddUser, onError }) => {
       onError("Please enter a valid age (Greater than 0).");
     } else {
       onAddUser(username, age);
+      setUsername("");
+      setAge("");
     }
   };
 
