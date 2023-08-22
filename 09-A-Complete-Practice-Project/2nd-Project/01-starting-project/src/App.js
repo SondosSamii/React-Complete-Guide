@@ -5,7 +5,7 @@ import ErrorModal from "./components/Users/ErrorModal";
 
 function App() {
   const [errorModal, setErrorModal] = useState("");
-  const [users, setUsers] = useState([]);
+  const [usersList, setUsersList] = useState([]);
 
   const showErrorModal = (error) => {
     if (error.length > 0) {
@@ -18,12 +18,10 @@ function App() {
   };
 
   const addUser = (name, age) => {
-    setUsers((prevUsers) => {
+    setUsersList((prevUsers) => {
       return [...prevUsers, { username: name, age: age }];
     });
   };
-
-  console.log(users);
 
   return (
     <div>
@@ -31,8 +29,8 @@ function App() {
       {errorModal && (
         <ErrorModal error={errorModal} onHideError={hideErrorModal} />
       )}
-      {users.length > 0 ? (
-        <UsersList users={users} />
+      {usersList.length > 0 ? (
+        <UsersList users={usersList} />
       ) : (
         <h1 style={{ textAlign: "center", color: "#fff" }}>No Users Added</h1>
       )}
