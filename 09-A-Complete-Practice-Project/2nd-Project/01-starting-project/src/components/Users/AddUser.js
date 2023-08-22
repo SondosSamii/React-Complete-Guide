@@ -10,9 +10,9 @@ const AddUser = ({ onAddUser, onError }) => {
 
   const addUserHandler = (event) => {
     event.preventDefault();
-    if (enteredUsername.trim().length === 0 || enteredAge.length === 0) {
+    if (enteredUsername.trim().length === 0 || enteredAge.trim().length === 0) {
       onError("Please enter a valid name and age (non-empty values).");
-    } else if (enteredAge <= 0) {
+    } else if (+enteredAge <= 0) {
       onError("Please enter a valid age (Greater than 0).");
     } else {
       onAddUser(enteredUsername, enteredAge);
