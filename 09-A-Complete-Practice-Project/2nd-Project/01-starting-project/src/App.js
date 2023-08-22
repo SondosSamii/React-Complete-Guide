@@ -17,15 +17,15 @@ function App() {
     setErrorModal("");
   };
 
-  const addUser = (name, age) => {
-    setUsersList((prevUsers) => {
-      return [...prevUsers, { username: name, age: age }];
+  const addUserHandler = (uName, uAge) => {
+    setUsersList((prevUsersList) => {
+      return [...prevUsersList, { username: uName, age: uAge }];
     });
   };
 
   return (
     <div>
-      <AddUser onAddUser={addUser} onError={showErrorModal} />
+      <AddUser onAddUser={addUserHandler} onError={showErrorModal} />
       {errorModal && (
         <ErrorModal error={errorModal} onHideError={hideErrorModal} />
       )}
