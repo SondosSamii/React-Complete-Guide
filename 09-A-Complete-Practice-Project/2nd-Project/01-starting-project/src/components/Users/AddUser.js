@@ -5,19 +5,19 @@ import Card from "../UI/Card";
 import Button from "../UI/Button";
 
 const AddUser = ({ onAddUser, onError }) => {
-  const [username, setUsername] = useState("");
-  const [age, setAge] = useState("");
+  const [enteredUsername, setEnteredUsername] = useState("");
+  const [enteredAge, setEnteredAge] = useState("");
 
   const addUserHandler = (event) => {
     event.preventDefault();
-    if (username.trim().length === 0 || age.length === 0) {
+    if (enteredUsername.trim().length === 0 || enteredAge.length === 0) {
       onError("Please enter a valid name and age (non-empty values).");
-    } else if (age <= 0) {
+    } else if (enteredAge <= 0) {
       onError("Please enter a valid age (Greater than 0).");
     } else {
-      onAddUser(username, age);
-      setUsername("");
-      setAge("");
+      onAddUser(enteredUsername, enteredAge);
+      setEnteredUsername("");
+      setEnteredAge("");
     }
   };
 
@@ -31,8 +31,8 @@ const AddUser = ({ onAddUser, onError }) => {
             name="username"
             id="username"
             className={globalClasses.bordered}
-            value={username}
-            onChange={(event) => setUsername(event.target.value)}
+            value={enteredUsername}
+            onChange={(event) => setEnteredUsername(event.target.value)}
           />
         </div>
         <div className={classes.inputGroup}>
@@ -42,8 +42,8 @@ const AddUser = ({ onAddUser, onError }) => {
             name="age"
             id="age"
             className={globalClasses.bordered}
-            value={age}
-            onChange={(event) => setAge(event.target.value)}
+            value={enteredAge}
+            onChange={(event) => setEnteredAge(event.target.value)}
           />
         </div>
         <Button type="submit">Add User</Button>
