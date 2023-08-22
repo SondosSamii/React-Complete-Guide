@@ -7,10 +7,10 @@ const UsersList = ({ users }) => {
   return (
     <Card>
       <ul className={classes.list}>
-        {users.map((user, index) => {
+        {users.map((user) => {
           return (
             <li
-              key={index}
+              key={user.id}
               className={`${globalClasses.bordered} ${classes.user}`}
             >
               {user.username} ({user.age} years old)
