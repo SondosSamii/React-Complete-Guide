@@ -7,7 +7,7 @@ const AddUser = ({ onAddUser, onError }) => {
   const [username, setUsername] = useState("");
   const [age, setAge] = useState("");
 
-  const onSubmit = (event) => {
+  const addUserHandler = (event) => {
     event.preventDefault();
     if (username.trim().length === 0 || age.length === 0) {
       onError("Please enter a valid name and age (non-empty values).");
@@ -20,7 +20,7 @@ const AddUser = ({ onAddUser, onError }) => {
 
   return (
     <Card>
-      <form onSubmit={onSubmit}>
+      <form onSubmit={addUserHandler}>
         <div className={classes.inputGroup}>
           <label htmlFor="username">Username</label>
           <input
