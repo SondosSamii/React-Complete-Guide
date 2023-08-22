@@ -6,15 +6,18 @@ import Card from "../UI/Card";
 const UsersList = ({ users }) => {
   return (
     <Card>
-      {users.map((user, index) => {
-        return (
-          <div key={index} className={classes.user}>
-            <p className={globalClasses.bordered}>
+      <ul className={classes.list}>
+        {users.map((user, index) => {
+          return (
+            <li
+              key={index}
+              className={`${globalClasses.bordered} ${classes.user}`}
+            >
               {user.username} ({user.age} years old)
-            </p>
-          </div>
-        );
-      })}
+            </li>
+          );
+        })}
+      </ul>
     </Card>
   );
 };
