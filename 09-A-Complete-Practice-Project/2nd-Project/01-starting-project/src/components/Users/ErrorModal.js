@@ -1,3 +1,4 @@
+import React from "react";
 import globalClasses from "../../Global.module.css";
 import classes from "./ErrorModal.module.css";
 import Card from "../UI/Card";
