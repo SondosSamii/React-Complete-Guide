@@ -2,6 +2,7 @@ import React from "react";
 import globalClasses from "../../Global.module.css";
 import classes from "./ErrorModal.module.css";
 import Card from "../UI/Card";
+import Button from "../UI/Button";
 
 const ErrorModal = ({ error, onHideError }) => {
   return (
@@ -11,13 +12,7 @@ const ErrorModal = ({ error, onHideError }) => {
         <div className={classes.errorContainer}>
           <p>{error}</p>
           <p style={{ textAlign: "end" }}>
-            <button
-              type="button"
-              className={globalClasses.mainBtn}
-              onClick={onHideError}
-            >
-              Okay
-            </button>
+            <Button onClick={onHideError}>Okay</Button>
           </p>
         </div>
       </Card>

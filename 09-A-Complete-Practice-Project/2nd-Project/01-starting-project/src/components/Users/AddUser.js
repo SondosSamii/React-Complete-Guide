@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import globalClasses from "../../Global.module.css";
 import classes from "./AddUser.module.css";
 import Card from "../UI/Card";
+import Button from "../UI/Button";
 
 const AddUser = ({ onAddUser, onError }) => {
   const [username, setUsername] = useState("");
@@ -43,9 +44,7 @@ const AddUser = ({ onAddUser, onError }) => {
             onChange={(event) => setAge(event.target.value)}
           />
         </div>
-        <button type="submit" className={globalClasses.mainBtn}>
-          Add User
-        </button>
+        <Button type="submit">Add User</Button>
       </form>
     </Card>
   );
