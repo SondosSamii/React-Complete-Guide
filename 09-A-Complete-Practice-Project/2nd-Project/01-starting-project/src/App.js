@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import AddUser from "./components/Users/AddUser";
 import UsersList from "./components/Users/UsersList";
 import ErrorModal from "./components/UI/ErrorModal";
+import Wrapper from "./components/Helpers/Wrapper";
 
 function App() {
   const [error, setError] = useState(null);
@@ -25,7 +26,7 @@ function App() {
   };
 
   return (
-    <div>
+    <Wrapper>
       <AddUser onAddUser={addUserHandler} onError={showErrorModal} />
       {error && (
         <ErrorModal error={error} onClick={hideErrorModal} action="Okay" />
@@ -35,7 +36,7 @@ function App() {
       ) : (
         <h1 style={{ textAlign: "center", color: "#fff" }}>No Users Added</h1>
       )}
-    </div>
+    </Wrapper>
   );
 }
 
