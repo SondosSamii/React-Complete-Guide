@@ -7,11 +7,13 @@
   display: flex;
   align-items: center;
   background-color: #000000b3;
+  z-index: 5;
 }
 
 .modal {
   width: 70%;
   padding: 0;
+  z-index: 10;
 }
 
 .modal header {
