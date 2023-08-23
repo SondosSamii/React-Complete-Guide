@@ -6,14 +6,16 @@ import Card from "../UI/Card";
 const ErrorModal = ({ error, onHideError }) => {
   return (
     <div className={classes.overlay}>
-      <Card>
-        <h1>Invalid Input</h1>
-        <div className={classes.errorContainer}>
-          <p>{error}</p>
-          <p style={{ textAlign: "end" }}>
-            <Button onClick={onHideError}>Okay</Button>
-          </p>
+      <Card className={classes.modal}>
+        <header>
+          <h2>{error.title}</h2>
+        </header>
+        <div className={classes.content}>
+          <p>{error.message}</p>
         </div>
+        <footer>
+          <Button onClick={onHideError}>Okay</Button>
+        </footer>
       </Card>
     </div>
   );

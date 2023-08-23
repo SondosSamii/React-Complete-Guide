@@ -7,10 +7,8 @@ function App() {
   const [errorModal, setErrorModal] = useState("");
   const [usersList, setUsersList] = useState([]);
 
-  const showErrorModal = (error) => {
-    if (error.length > 0) {
-      setErrorModal(error);
-    }
+  const showErrorModal = (title, errorMsg) => {
+    setErrorModal({ title: title, message: errorMsg });
   };
 
   const hideErrorModal = () => {

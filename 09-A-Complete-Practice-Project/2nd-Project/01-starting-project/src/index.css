@@ -1,5 +1,6 @@
 :root {
   --main-dark-color: #1a2f36;
+  --border-radius: 10px;
   --error-padding: 1rem 1.5rem;
 }
 
