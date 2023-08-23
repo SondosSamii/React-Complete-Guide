@@ -3,7 +3,7 @@ import classes from "./ErrorModal.module.css";
 import Button from "./Button";
 import Card from "./Card";
 
-const ErrorModal = ({ error, onHideError, action }) => {
+const ErrorModal = ({ error, onClick, action }) => {
   return (
     <div className={classes.overlay}>
       <Card className={classes.modal}>
@@ -14,7 +14,7 @@ const ErrorModal = ({ error, onHideError, action }) => {
           <p>{error.message}</p>
         </div>
         <footer>
-          <Button onClick={onHideError}>{action}</Button>
+          <Button onClick={onClick}>{action}</Button>
         </footer>
       </Card>
     </div>

@@ -28,7 +28,7 @@ function App() {
     <div>
       <AddUser onAddUser={addUserHandler} onError={showErrorModal} />
       {error && (
-        <ErrorModal error={error} onHideError={hideErrorModal} action="Okay" />
+        <ErrorModal error={error} onClick={hideErrorModal} action="Okay" />
       )}
       {usersList.length > 0 ? (
         <UsersList users={usersList} />
