@@ -4,7 +4,7 @@ import UsersList from "./components/Users/UsersList";
 import ErrorModal from "./components/UI/ErrorModal";
 
 function App() {
-  const [error, setError] = useState("");
+  const [error, setError] = useState(null);
   const [usersList, setUsersList] = useState([]);
 
   const showErrorModal = (error) => {
@@ -12,7 +12,7 @@ function App() {
   };
 
   const hideErrorModal = () => {
-    setError("");
+    setError(null);
   };
 
   const addUserHandler = (uName, uAge) => {
