@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import AddUser from "./components/Users/AddUser";
 import UsersList from "./components/Users/UsersList";
-import ErrorModal from "./components/Users/ErrorModal";
+import ErrorModal from "./components/UI/ErrorModal";
 
 function App() {
   const [errorModal, setErrorModal] = useState("");
@@ -28,7 +28,11 @@ function App() {
     <div>
       <AddUser onAddUser={addUserHandler} onError={showErrorModal} />
       {errorModal && (
-        <ErrorModal error={errorModal} onHideError={hideErrorModal} />
+        <ErrorModal
+          error={errorModal}
+          onHideError={hideErrorModal}
+          action="Okay"
+        />
       )}
       {usersList.length > 0 ? (
         <UsersList users={usersList} />

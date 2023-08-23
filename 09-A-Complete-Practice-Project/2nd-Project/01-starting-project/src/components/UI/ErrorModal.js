@@ -1,9 +1,9 @@
 import React from "react";
 import classes from "./ErrorModal.module.css";
-import Button from "../UI/Button";
-import Card from "../UI/Card";
+import Button from "./Button";
+import Card from "./Card";
 
-const ErrorModal = ({ error, onHideError }) => {
+const ErrorModal = ({ error, onHideError, action }) => {
   return (
     <div className={classes.overlay}>
       <Card className={classes.modal}>
@@ -14,7 +14,7 @@ const ErrorModal = ({ error, onHideError }) => {
           <p>{error.message}</p>
         </div>
         <footer>
-          <Button onClick={onHideError}>Okay</Button>
+          <Button onClick={onHideError}>{action}</Button>
         </footer>
       </Card>
     </div>
