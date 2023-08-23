@@ -11,9 +11,15 @@ const AddUser = ({ onAddUser, onError }) => {
   const addUserHandler = (event) => {
     event.preventDefault();
     if (enteredUsername.trim().length === 0 || enteredAge.trim().length === 0) {
-      onError("Invalid Input!", "Please enter a valid name and age (non-empty values).");
+      onError({
+        title: "Invalid Input!",
+        message: "Please enter a valid name and age (non-empty values).",
+      });
     } else if (+enteredAge <= 0) {
-      onError("Invalid Age!", "Please enter a valid age (Greater than 0).");
+      onError({
+        title: "Invalid Age!",
+        message: "Please enter a valid age (Greater than 0).",
+      });
     } else {
       onAddUser(enteredUsername, enteredAge);
       setEnteredUsername("");
