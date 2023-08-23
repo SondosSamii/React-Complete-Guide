@@ -4,15 +4,15 @@ import UsersList from "./components/Users/UsersList";
 import ErrorModal from "./components/UI/ErrorModal";
 
 function App() {
-  const [errorModal, setErrorModal] = useState("");
+  const [error, setError] = useState("");
   const [usersList, setUsersList] = useState([]);
 
   const showErrorModal = (error) => {
-    setErrorModal(error);
+    setError(error);
   };
 
   const hideErrorModal = () => {
-    setErrorModal("");
+    setError("");
   };
 
   const addUserHandler = (uName, uAge) => {
@@ -27,12 +27,8 @@ function App() {
   return (
     <div>
       <AddUser onAddUser={addUserHandler} onError={showErrorModal} />
-      {errorModal && (
-        <ErrorModal
-          error={errorModal}
-          onHideError={hideErrorModal}
-          action="Okay"
-        />
+      {error && (
+        <ErrorModal error={error} onHideError={hideErrorModal} action="Okay" />
       )}
       {usersList.length > 0 ? (
         <UsersList users={usersList} />
