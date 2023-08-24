@@ -1,15 +1,18 @@
-import React, { useState } from "react";
+import React, { useRef } from "react";
 import globalClasses from "../../Global.module.css";
 import classes from "./AddUser.module.css";
 import Card from "../UI/Card";
 import Button from "../UI/Button";
 
 const AddUser = ({ onAddUser, onError }) => {
-  const [enteredUsername, setEnteredUsername] = useState("");
-  const [enteredAge, setEnteredAge] = useState("");
+  const nameRef = useRef();
+  const ageRef = useRef();
 
   const addUserHandler = (event) => {
     event.preventDefault();
+    let enteredUsername = nameRef.current.value;
+    let enteredAge = ageRef.current.value;
+
     if (enteredUsername.trim().length === 0 || enteredAge.trim().length === 0) {
       onError({
         title: "Invalid Input!",
@@ -22,8 +25,8 @@ const AddUser = ({ onAddUser, onError }) => {
       });
     } else {
       onAddUser(enteredUsername, enteredAge);
-      setEnteredUsername("");
-      setEnteredAge("");
+      nameRef.current.value = "";
+      ageRef.current.value = "";
     }
   };
 
@@ -37,8 +40,7 @@ const AddUser = ({ onAddUser, onError }) => {
             name="username"
             id="username"
             className={globalClasses.bordered}
-            value={enteredUsername}
-            onChange={(event) => setEnteredUsername(event.target.value)}
+            ref={nameRef}
           />
         </div>
         <div className={classes.inputGroup}>
@@ -48,8 +50,7 @@ const AddUser = ({ onAddUser, onError }) => {
             name="age"
             id="age"
             className={globalClasses.bordered}
-            value={enteredAge}
-            onChange={(event) => setEnteredAge(event.target.value)}
+            ref={ageRef}
           />
         </div>
         <Button type="submit">Add User</Button>
