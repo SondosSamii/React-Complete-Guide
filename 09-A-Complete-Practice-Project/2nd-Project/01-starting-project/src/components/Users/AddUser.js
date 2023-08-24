@@ -10,8 +10,8 @@ const AddUser = ({ onAddUser, onError }) => {
 
   const addUserHandler = (event) => {
     event.preventDefault();
-    let enteredUsername = nameRef.current.value;
-    let enteredAge = ageRef.current.value;
+    const enteredUsername = nameRef.current.value;
+    const enteredAge = ageRef.current.value;
 
     if (enteredUsername.trim().length === 0 || enteredAge.trim().length === 0) {
       onError({
