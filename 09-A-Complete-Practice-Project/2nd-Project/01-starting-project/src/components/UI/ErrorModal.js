@@ -1,9 +1,10 @@
 import React from "react";
+import ReactDOM from "react-dom";
 import classes from "./ErrorModal.module.css";
 import Button from "./Button";
 import Card from "./Card";
 
-const ErrorModal = ({ error, onClick, action }) => {
+const ModalOverlay = ({ error, onClick, action }) => {
   return (
     <div className={classes.overlay}>
       <Card className={classes.modal}>
@@ -18,6 +19,13 @@ const ErrorModal = ({ error, onClick, action }) => {
         </footer>
       </Card>
     </div>
+  );
+};
+
+const ErrorModal = ({ error, onClick, action }) => {
+  return ReactDOM.createPortal(
+    <ModalOverlay error={error} onClick={onClick} action={action} />,
+    document.getElementById("modal-root")
   );
 };
 

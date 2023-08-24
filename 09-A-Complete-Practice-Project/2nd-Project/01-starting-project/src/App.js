@@ -27,10 +27,12 @@ function App() {
 
   return (
     <Wrapper>
-      <AddUser onAddUser={addUserHandler} onError={showErrorModal} />
       {error && (
         <ErrorModal error={error} onClick={hideErrorModal} action="Okay" />
       )}
+
+      <AddUser onAddUser={addUserHandler} onError={showErrorModal} />
+
       {usersList.length > 0 ? (
         <UsersList users={usersList} />
       ) : (
