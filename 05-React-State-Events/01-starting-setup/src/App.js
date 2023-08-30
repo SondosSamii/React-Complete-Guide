@@ -27,7 +27,7 @@ const expenses = [
 function App() {
   const [expensesArr, setExpensesArr] = useState(expenses);
 
-  const addExpenseToItems = (expense) => {
+  const addExpenseHandler = (expense) => {
     setExpensesArr((prevData) => {
       return [...prevData, expense];
     });
@@ -35,7 +35,7 @@ function App() {
 
   return (
     <div>
-      <NewExpense onAddExpense={addExpenseToItems} />
+      <NewExpense onAddExpense={addExpenseHandler} />
       <Expenses items={expensesArr} />
     </div>
   );
