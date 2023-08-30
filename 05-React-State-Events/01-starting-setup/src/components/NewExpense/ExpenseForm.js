@@ -6,16 +6,8 @@ const ExpenseForm = ({ onSaveExpense }) => {
   const [enteredAmount, setEnteredAmount] = useState("");
   const [enteredDate, setEnteredDate] = useState("");
 
-  const titleChangeHandler = (event) => {
-    setEnteredTitle(event.target.value);
-  };
-
-  const amountChangeHandler = (event) => {
-    setEnteredAmount(event.target.value);
-  };
-
-  const dateChangeHandler = (event) => {
-    setEnteredDate(event.target.value);
+  const inputChangeHandler = (inputState, event) => {
+    inputState(event.target.value);
   };
 
   const submitHandler = (event) => {
@@ -39,7 +31,7 @@ const ExpenseForm = ({ onSaveExpense }) => {
           <input
             type="text"
             value={enteredTitle}
-            onChange={titleChangeHandler}
+            onChange={(event) => inputChangeHandler(setEnteredTitle, event)}
           />
         </div>
         <div className="new-expense__control">
@@ -49,7 +41,7 @@ const ExpenseForm = ({ onSaveExpense }) => {
             min="0.01"
             step="0.01"
             value={enteredAmount}
-            onChange={amountChangeHandler}
+            onChange={(event) => inputChangeHandler(setEnteredAmount, event)}
           />
         </div>
         <div className="new-expense__control">
@@ -59,7 +51,7 @@ const ExpenseForm = ({ onSaveExpense }) => {
             min="2019-01-01"
             max="2023-12-31"
             value={enteredDate}
-            onChange={dateChangeHandler}
+            onChange={(event) => inputChangeHandler(setEnteredDate, event)}
           />
         </div>
       </div>
