@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import Expenses from "./components/Expenses/Expenses";
+import NewExpense from "./components/NewExpense/NewExpense";
 
 const expenses = [
   {
@@ -24,10 +25,18 @@ const expenses = [
 ];
 
 function App() {
+  const [expensesArr, setExpensesArr] = useState(expenses);
+
+  const addExpenseToItems = (expense) => {
+    setExpensesArr((prevData) => {
+      return [...prevData, expense];
+    });
+  };
+
   return (
     <div>
-      <h2>Let's get started!</h2>
-      <Expenses items={expenses} />
+      <NewExpense onAddExpense={addExpenseToItems} />
+      <Expenses items={expensesArr} />
     </div>
   );
 }
