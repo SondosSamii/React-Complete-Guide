@@ -8,15 +8,13 @@ const Expenses = ({ items }) => {
   const years = [2023, 2022, 2021, 2020, 2019];
 
   const [filteredYear, setFilteredYear] = useState(years[0]);
-  const [joinedFilteredYears, setJoinedFilteredYears] = useState(
-    years.filter((year) => year !== 2023).join(", ")
-  );
+
+  let joinedFilteredYears = years
+    .filter((year) => year !== parseInt(filteredYear))
+    .join(", ");
 
   const filterYearHandler = (selectedYear) => {
     setFilteredYear(selectedYear);
-    setJoinedFilteredYears(
-      years.filter((year) => year !== parseInt(selectedYear)).join(", ")
-    );
   };
 
   return (
