@@ -29,11 +29,12 @@ const Expenses = ({ items }) => {
         years={years}
         onChangeYearFilter={filterYearHandler}
       />
-      {filteredExpenses.length === 0 ? (
+      {filteredExpenses.length === 0 && (
         <p style={{ textAlign: "center", color: "white" }}>
-          No Expenses in {filteredYear}
+          No Expenses Found in {filteredYear}
         </p>
-      ) : (
+      )}
+      {filteredExpenses.length > 0 && (
         <>
           <p style={{ textAlign: "center", color: "white" }}>
             Data for these years: [{joinedFilteredYears}] is hidden
