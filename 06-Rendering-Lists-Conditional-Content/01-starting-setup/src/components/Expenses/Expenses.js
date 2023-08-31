@@ -22,6 +22,25 @@ const Expenses = ({ items }) => {
     (expense) => expense.date.getFullYear() === parseInt(filteredYear)
   );
 
+  let expensesContent = (
+    <p style={{ textAlign: "center", color: "white" }}>
+      No Expenses Found in {filteredYear}
+    </p>
+  );
+
+  if (filteredExpenses.length > 0) {
+    expensesContent = (
+      <>
+        <p style={{ textAlign: "center", color: "white" }}>
+          Data for these years: [{joinedFilteredYears}] is hidden
+        </p>
+        {filteredExpenses.map((expense) => (
+          <ExpenseItem key={expense.id} item={expense} />
+        ))}
+      </>
+    );
+  }
+
   return (
     <Card className="expenses">
       <ExpensesFilter
@@ -29,21 +48,7 @@ const Expenses = ({ items }) => {
         years={years}
         onChangeYearFilter={filterYearHandler}
       />
-      {filteredExpenses.length === 0 && (
-        <p style={{ textAlign: "center", color: "white" }}>
-          No Expenses Found in {filteredYear}
-        </p>
-      )}
-      {filteredExpenses.length > 0 && (
-        <>
-          <p style={{ textAlign: "center", color: "white" }}>
-            Data for these years: [{joinedFilteredYears}] is hidden
-          </p>
-          {filteredExpenses.map((expense) => (
-            <ExpenseItem key={expense.id} item={expense} />
-          ))}
-        </>
-      )}
+      {expensesContent}
     </Card>
   );
 };
