@@ -18,6 +18,10 @@ const Expenses = ({ items }) => {
     setFilteredYear(selectedYear);
   };
 
+  const filteredExpenses = items.filter(
+    (expense) => expense.date.getFullYear() === parseInt(filteredYear)
+  );
+
   return (
     <Card className="expenses">
       <ExpensesFilter
@@ -28,13 +32,9 @@ const Expenses = ({ items }) => {
       <p style={{ textAlign: "center", color: "white" }}>
         Data for these years: [{joinedFilteredYears}] is hidden
       </p>
-      {items
-        .filter(
-          (expense) => expense.date.getFullYear() === parseInt(filteredYear)
-        )
-        .map((expense) => (
-          <ExpenseItem key={expense.id} item={expense} />
-        ))}
+      {filteredExpenses.map((expense) => (
+        <ExpenseItem key={expense.id} item={expense} />
+      ))}
     </Card>
   );
 };
