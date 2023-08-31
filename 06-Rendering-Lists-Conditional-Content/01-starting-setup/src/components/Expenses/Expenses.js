@@ -29,12 +29,20 @@ const Expenses = ({ items }) => {
         years={years}
         onChangeYearFilter={filterYearHandler}
       />
-      <p style={{ textAlign: "center", color: "white" }}>
-        Data for these years: [{joinedFilteredYears}] is hidden
-      </p>
-      {filteredExpenses.map((expense) => (
-        <ExpenseItem key={expense.id} item={expense} />
-      ))}
+      {filteredExpenses.length === 0 ? (
+        <p style={{ textAlign: "center", color: "white" }}>
+          No Expenses in {filteredYear}
+        </p>
+      ) : (
+        <>
+          <p style={{ textAlign: "center", color: "white" }}>
+            Data for these years: [{joinedFilteredYears}] is hidden
+          </p>
+          {filteredExpenses.map((expense) => (
+            <ExpenseItem key={expense.id} item={expense} />
+          ))}
+        </>
+      )}
     </Card>
   );
 };
