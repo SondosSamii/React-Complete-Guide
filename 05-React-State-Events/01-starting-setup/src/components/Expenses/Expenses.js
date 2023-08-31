@@ -10,6 +10,7 @@ const Expenses = ({ items }) => {
   const [filteredYear, setFilteredYear] = useState(years[0]);
 
   let joinedFilteredYears = years
+    .reverse()
     .filter((year) => year !== parseInt(filteredYear))
     .join(", ");
 
