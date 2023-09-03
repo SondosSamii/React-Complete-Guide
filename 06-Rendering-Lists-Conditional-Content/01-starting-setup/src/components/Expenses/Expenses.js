@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import Card from "../UI/Card";
-import ExpenseItem from "./ExpenseItem";
-import "./Expenses.css";
 import ExpensesFilter from "./ExpensesFilter";
+import ExpensesList from "./ExpensesList";
+import "./Expenses.css";
 
 const Expenses = ({ items }) => {
   const years = [2023, 2022, 2021, 2020, 2019];
@@ -22,25 +22,6 @@ const Expenses = ({ items }) => {
     (expense) => expense.date.getFullYear() === parseInt(filteredYear)
   );
 
-  let expensesContent = (
-    <p style={{ textAlign: "center", color: "white" }}>
-      No Expenses Found in {filteredYear}
-    </p>
-  );
-
-  if (filteredExpenses.length > 0) {
-    expensesContent = (
-      <>
-        <p style={{ textAlign: "center", color: "white" }}>
-          Data for these years: [{joinedFilteredYears}] is hidden
-        </p>
-        {filteredExpenses.map((expense) => (
-          <ExpenseItem key={expense.id} item={expense} />
-        ))}
-      </>
-    );
-  }
-
   return (
     <Card className="expenses">
       <ExpensesFilter
@@ -48,7 +29,11 @@ const Expenses = ({ items }) => {
         years={years}
         onChangeYearFilter={filterYearHandler}
       />
-      {expensesContent}
+      <ExpensesList
+        filteredYear={filteredYear}
+        joinedFilteredYears={joinedFilteredYears}
+        items={filteredExpenses}
+      />
     </Card>
   );
 };
