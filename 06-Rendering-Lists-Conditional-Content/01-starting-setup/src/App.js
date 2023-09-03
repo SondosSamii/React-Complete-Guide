@@ -31,18 +31,7 @@ const initialExpenses = [
 ];
 
 function App() {
-  const years = [2023, 2022, 2021, 2020, 2019];
-
-  const [filteredYear, setFilteredYear] = useState(years[0]);
   const [expenses, setExpenses] = useState(initialExpenses);
-
-  const filterYearHandler = (selectedYear) => {
-    setFilteredYear(selectedYear);
-  };
-
-  const filteredExpenses = expenses.filter(
-    (expense) => expense.date.getFullYear() === parseInt(filteredYear)
-  );
 
   const addExpenseHandler = (expense) => {
     setExpenses((prevData) => {
@@ -53,12 +42,7 @@ function App() {
   return (
     <div>
       <NewExpense onAddExpense={addExpenseHandler} />
-      <Expenses
-        years={years}
-        filteredYear={filteredYear}
-        filteredExpenses={filteredExpenses}
-        onSelectYear={filterYearHandler}
-      />
+      <Expenses expenses={expenses} />
     </div>
   );
 }
