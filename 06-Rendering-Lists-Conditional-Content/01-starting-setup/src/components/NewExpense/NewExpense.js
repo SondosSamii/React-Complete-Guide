@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import ExpenseForm from "./ExpenseForm";
 import "./NewExpense.css";
 
 const NewExpense = ({ onAddExpense }) => {
+  const [toggleForm, setToggleForm] = useState(false);
+
   const onSaveNewExpenseHandler = (enteredExpenseData) => {
     const expenseData = {
       id: Math.random().toString(),
@@ -12,9 +14,27 @@ const NewExpense = ({ onAddExpense }) => {
     onAddExpense(expenseData);
   };
 
+  const onToggleForm = () => {
+    setToggleForm(!toggleForm);
+  };
+
   return (
     <div className="new-expense">
-      <ExpenseForm onSaveExpense={onSaveNewExpenseHandler} />
+      {toggleForm ? (
+        <ExpenseForm
+          onSaveExpense={onSaveNewExpenseHandler}
+          onCancel={onToggleForm}
+        />
+      ) : (
+        <button
+          type="button"
+          onClick={() => {
+            onToggleForm();
+          }}
+        >
+          Add New Expense
+        </button>
+      )}
     </div>
   );
 };
