@@ -2,7 +2,12 @@ import React from "react";
 import ExpenseItem from "./ExpenseItem";
 import "./ExpensesList.css";
 
-const ExpensesList = ({ filteredYear, joinedFilteredYears, items }) => {
+const ExpensesList = ({ years, filteredYear, items }) => {
+  let joinedFilteredYears = years
+    .reverse()
+    .filter((year) => year !== parseInt(filteredYear))
+    .join(", ");
+
   let expensesFilterMsg = (
     <p className="expenses-list__fallback">
       No Expenses Found in {filteredYear}
