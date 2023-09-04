@@ -2,7 +2,7 @@ import React from "react";
 import ExpenseItem from "./ExpenseItem";
 import "./ExpensesList.css";
 
-const ExpensesList = ({ years, filteredYear, items }) => {
+const ExpensesList = ({ years, filteredYear, expenses }) => {
   let joinedFilteredYears = years
     .reverse()
     .filter((year) => year !== parseInt(filteredYear))
@@ -14,7 +14,7 @@ const ExpensesList = ({ years, filteredYear, items }) => {
     </p>
   );
 
-  if (items.length > 0) {
+  if (expenses.length > 0) {
     expensesFilterMsg = (
       <p className="expenses-list__fallback">
         Data for these years: [{joinedFilteredYears}] is hidden
@@ -25,9 +25,9 @@ const ExpensesList = ({ years, filteredYear, items }) => {
   return (
     <>
       {expensesFilterMsg}
-      {items.length > 0 && (
+      {expenses.length > 0 && (
         <ul className="expenses-list">
-          {items.map((expense) => (
+          {expenses.map((expense) => (
             <ExpenseItem key={expense.id} item={expense} />
           ))}
         </ul>

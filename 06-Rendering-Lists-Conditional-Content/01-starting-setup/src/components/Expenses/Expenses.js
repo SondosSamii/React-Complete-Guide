@@ -29,7 +29,7 @@ const Expenses = ({ expenses }) => {
       <ExpensesList
         filteredYear={filteredYear}
         years={years}
-        items={filteredExpenses}
+        expenses={filteredExpenses}
       />
     </Card>
   );
