@@ -4,21 +4,26 @@ import Log from "./components/GameContainer/Log";
 
 function App() {
   const [gameTurns, setGameTurns] = useState([]);
-  const [activePlayer, setActivePlayer] = useState("X");
 
   function handleSelectSquare(board, rowIndex, colIndex) {
     if (board[rowIndex][colIndex] === null) {
-      setActivePlayer((currentPlayer) => (currentPlayer === "X" ? "O" : "X"));
-      setGameTurns([
-        { player: activePlayer, square: { row: rowIndex, col: colIndex } },
-        ...gameTurns,
+      setGameTurns((prevTurns) => [
+        {
+          player: prevTurns[0]?.player === "X" ? "O" : "X",
+          square: { row: rowIndex, col: colIndex },
+        },
+        ...prevTurns,
       ]);
     }
   }
 
   return (
     <main>
-      <GameContainer activePlayer={activePlayer} turns={gameTurns} onPlay={handleSelectSquare} />
+      <GameContainer
+        activePlayer={gameTurns[0]?.player === "X" ? "O" : "X"}
+        turns={gameTurns}
+        onPlay={handleSelectSquare}
+      />
       <Log turns={gameTurns} />
     </main>
   );
