@@ -1,5 +1,13 @@
-export function GameBoard({ board, gameTurns, onSelectSquare }) {
-  for (const turn of gameTurns) {
+const initialBoard = [
+  [null, null, null],
+  [null, null, null],
+  [null, null, null],
+];
+
+export function GameBoard({ turns, onPlay }) {
+  const board = initialBoard;
+
+  for (const turn of turns) {
     const { player, square } = turn;
     const { row, col } = square;
     board[row][col] = player;
@@ -12,7 +20,7 @@ export function GameBoard({ board, gameTurns, onSelectSquare }) {
           <ol>
             {row.map((cell, colIndex) => (
               <li key={colIndex}>
-                <button onClick={() => onSelectSquare(rowIndex, colIndex)}>{cell}</button>
+                <button onClick={() => onPlay(board, rowIndex, colIndex)}>{cell}</button>
               </li>
             ))}
           </ol>

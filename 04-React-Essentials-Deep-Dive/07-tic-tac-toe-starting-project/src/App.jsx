@@ -2,19 +2,11 @@ import { useState } from "react";
 import { GameContainer } from "./components/GameContainer/GameContainer";
 import Log from "./components/GameContainer/Log";
 
-const initialBoard = [
-  [null, null, null],
-  [null, null, null],
-  [null, null, null],
-];
-
 function App() {
   const [gameTurns, setGameTurns] = useState([]);
   const [activePlayer, setActivePlayer] = useState("X");
 
-  const board = initialBoard;
-
-  function handleSelectSquare(rowIndex, colIndex) {
+  function handleSelectSquare(board, rowIndex, colIndex) {
     if (board[rowIndex][colIndex] === null) {
       setActivePlayer((currentPlayer) => (currentPlayer === "X" ? "O" : "X"));
       setGameTurns([
@@ -26,12 +18,7 @@ function App() {
 
   return (
     <main>
-      <GameContainer
-        activePlayer={activePlayer}
-        board={board}
-        gameTurns={gameTurns}
-        onSelectSquare={handleSelectSquare}
-      />
+      <GameContainer activePlayer={activePlayer} turns={gameTurns} onPlay={handleSelectSquare} />
       <Log turns={gameTurns} />
     </main>
   );
