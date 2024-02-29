@@ -2,15 +2,17 @@ import { useState } from "react";
 import { GameContainer } from "./components/GameContainer/GameContainer";
 import Log from "./components/GameContainer/Log";
 
+function getActivePlayer(turns) {
+  return turns[0]?.player === "X" ? "O" : "X";
+}
+
 function App() {
   const [gameTurns, setGameTurns] = useState([]);
 
   function handleSelectSquare(board, rowIndex, colIndex) {
     if (board[rowIndex][colIndex] === null) {
       setGameTurns((prevTurns) => [
-        {
-          player: prevTurns[0]?.player === "X" ? "O" : "X",
-          square: { row: rowIndex, col: colIndex },
+        { player: getActivePlayer(prevTurns), square: { row: rowIndex, col: colIndex }
         },
         ...prevTurns,
       ]);
@@ -20,7 +22,7 @@ function App() {
   return (
     <main>
       <GameContainer
-        activePlayer={gameTurns[0]?.player === "X" ? "O" : "X"}
+        activePlayer={getActivePlayer(gameTurns)}
         turns={gameTurns}
         onPlay={handleSelectSquare}
       />
