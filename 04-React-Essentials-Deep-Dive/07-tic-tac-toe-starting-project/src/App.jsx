@@ -26,12 +26,12 @@ function App() {
   let winner;
 
   for (const combination of WINNING_COMBINATIONS) {
-    const fisrtSquare = gameBoard[combination[0].row][combination[0].column];
+    const firstSquare = gameBoard[combination[0].row][combination[0].column];
     const secondSquare = gameBoard[combination[1].row][combination[1].column];
     const thirdSquare = gameBoard[combination[2].row][combination[2].column];
 
-    if (fisrtSquare && fisrtSquare === secondSquare && fisrtSquare === thirdSquare) {
-      winner = fisrtSquare;
+    if (firstSquare && firstSquare === secondSquare && firstSquare === thirdSquare) {
+      winner = firstSquare;
     }
   }
 
