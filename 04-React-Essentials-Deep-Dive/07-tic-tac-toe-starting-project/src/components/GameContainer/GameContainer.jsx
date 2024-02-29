@@ -6,7 +6,7 @@ export function GameContainer({ activePlayer, board, onPlay, winner }) {
     <div id="game-container">
       <Players activePlayer={activePlayer} />
       {winner && <p>You are the winner: {winner}!</p>}
-      <GameBoard board={board} onPlay={onPlay} />
+      <GameBoard board={board} onPlay={onPlay} winner={winner} />
     </div>
   );
 }

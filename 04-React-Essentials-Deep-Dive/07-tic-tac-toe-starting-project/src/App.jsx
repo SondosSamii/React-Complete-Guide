@@ -23,7 +23,7 @@ function App() {
     gameBoard[row][col] = player;
   }
 
-  let winner;
+  let winner = null;
 
   for (const combination of WINNING_COMBINATIONS) {
     const firstSquare = gameBoard[combination[0].row][combination[0].column];

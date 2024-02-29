@@ -1,4 +1,4 @@
-export function GameBoard({ board, onPlay }) {
+export function GameBoard({ board, onPlay, winner }) {
   return (
     <ol id="game-board">
       {board.map((row, rowIndex) => (
@@ -8,7 +8,7 @@ export function GameBoard({ board, onPlay }) {
               <li key={colIndex}>
                 <button
                   onClick={() => onPlay(rowIndex, colIndex)}
-                  disabled={board[rowIndex][colIndex] !== null}
+                  disabled={board[rowIndex][colIndex] !== null || winner !== null}
                 >
                   {cell}
                 </button>
