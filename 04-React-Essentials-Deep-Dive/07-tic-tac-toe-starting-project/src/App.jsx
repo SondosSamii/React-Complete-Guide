@@ -10,13 +10,10 @@ function App() {
   const [gameTurns, setGameTurns] = useState([]);
 
   function handleSelectSquare(board, rowIndex, colIndex) {
-    if (board[rowIndex][colIndex] === null) {
-      setGameTurns((prevTurns) => [
-        { player: getActivePlayer(prevTurns), square: { row: rowIndex, col: colIndex }
-        },
-        ...prevTurns,
-      ]);
-    }
+    setGameTurns((prevTurns) => [
+      { player: getActivePlayer(prevTurns), square: { row: rowIndex, col: colIndex } },
+      ...prevTurns,
+    ]);
   }
 
   return (
