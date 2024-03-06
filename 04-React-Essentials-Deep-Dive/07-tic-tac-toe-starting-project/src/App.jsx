@@ -1,39 +1,18 @@
 import { useState } from "react";
-import { GameContainer } from "./components/GameContainer/GameContainer";
-import Log from "./components/GameContainer/Log";
-import { WINNING_COMBINATIONS } from "./winning-combinations";
-
-const initialBoard = [
-  [null, null, null],
-  [null, null, null],
-  [null, null, null],
-];
-
-function getActivePlayer(turns) {
-  return turns[0]?.player === "X" ? "O" : "X";
-}
+import { GameContainer } from "./components/GameContainer";
+import Log from "./components/Log";
+import { getActivePlayer, getGameBoard, getWinner } from "./helpers/global";
 
 function App() {
   const [gameTurns, setGameTurns] = useState([]);
-  const gameBoard = initialBoard;
 
-  for (const turn of gameTurns) {
-    const { player, square } = turn;
-    const { row, col } = square;
-    gameBoard[row][col] = player;
-  }
+  const activePlayer = getActivePlayer(gameTurns);
 
-  let winner = null;
+  const gameBoard = getGameBoard(gameTurns);
 
-  for (const combination of WINNING_COMBINATIONS) {
-    const firstSquare = gameBoard[combination[0].row][combination[0].column];
-    const secondSquare = gameBoard[combination[1].row][combination[1].column];
-    const thirdSquare = gameBoard[combination[2].row][combination[2].column];
+  const winnerSymbol = getWinner(gameBoard);
 
-    if (firstSquare && firstSquare === secondSquare && firstSquare === thirdSquare) {
-      winner = firstSquare;
-    }
-  }
+  const hasDraw = gameTurns.length >= 9;
 
   function handleSelectSquare(rowIndex, colIndex) {
     setGameTurns((prevTurns) => [
@@ -42,13 +21,20 @@ function App() {
     ]);
   }
 
+  function handleRematch() {
+    setGameTurns([]);
+  }
+
   return (
     <main>
       <GameContainer
-        activePlayer={getActivePlayer(gameTurns)}
+        activePlayer={activePlayer}
         board={gameBoard}
-        onPlay={ handleSelectSquare }
-        winner={winner}
+        turns={gameTurns}
+        onPlay={handleSelectSquare}
+        winnerSymbol={winnerSymbol}
+        hasDraw={hasDraw}
+        onRematch={handleRematch}
       />
       <Log turns={gameTurns} />
     </main>
