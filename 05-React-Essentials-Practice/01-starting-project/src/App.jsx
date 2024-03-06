@@ -11,7 +11,7 @@ function App() {
   const results = calculateInvestmentResults(inputs);
 
   function handleChange(element, event) {
-    setInputs({ ...inputs, [element]: event.target.value });
+    setInputs({ ...inputs, [element]: Number(event.target.value) });
 
     if (event.target.value < 0 || (element === "duration" && event.target.value < 1)) {
       setErrorMsg("You should enter a valid amount");
