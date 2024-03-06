@@ -8,16 +8,16 @@ TBody.propTypes = {
 export default function TBody({ inputs }) {
   const results = calculateInvestmentResults(inputs);
 
-  let total_interests = 0;
+  let totalInterest = 0;
   return results.map(({ year, interest, valueEndOfYear }) => {
-    total_interests += interest;
+    totalInterest += interest;
     return (
       <tr key={year}>
         <td>{year}</td>
         <td>{formatter.format(valueEndOfYear)}</td>
         <td>{formatter.format(interest)}</td>
-        <td>{formatter.format(total_interests)}</td>
-        <td>{formatter.format(valueEndOfYear - total_interests)}</td>
+        <td>{formatter.format(totalInterest)}</td>
+        <td>{formatter.format(valueEndOfYear - totalInterest)}</td>
       </tr>
     );
   });
