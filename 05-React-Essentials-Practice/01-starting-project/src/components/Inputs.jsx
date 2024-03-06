@@ -4,9 +4,10 @@ import Input from "./Input";
 Inputs.propTypes = {
   inputs: PropTypes.object.isRequired,
   onChange: PropTypes.func.isRequired,
+  errorMsg: PropTypes.string,
 };
 
-export default function Inputs({ inputs, onChange }) {
+export default function Inputs({ inputs, onChange, errorMsg }) {
   return (
     <div id="user-input">
       <div className="input-group">
@@ -29,6 +30,7 @@ export default function Inputs({ inputs, onChange }) {
         />
         <Input label="Duration" value={inputs.duration} onChange={(e) => onChange("duration", e)} />
       </div>
+      {errorMsg && <p>{errorMsg}</p>}
     </div>
   );
 }
