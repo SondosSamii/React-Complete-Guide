@@ -11,7 +11,7 @@ function App() {
   function handleChange(element, event) {
     setInputs({ ...inputs, [element]: Number(event.target.value) });
 
-    if (event.target.value < 0 || (element === "duration" && event.target.value < 1)) {
+    if (event.target.value <= 0 || (element === "duration" && event.target.value < 1)) {
       setErrorMsg("You should enter a valid amount");
     } else {
       setErrorMsg("");
