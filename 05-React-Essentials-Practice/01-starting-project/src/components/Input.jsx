@@ -10,7 +10,7 @@ export default function Input({ label, value, onChange }) {
   return (
     <div>
       <label>{label}</label>
-      <input type="number" value={value} onChange={onChange} />
+      <input required type="number" value={value} onChange={onChange} />
     </div>
   );
 }
