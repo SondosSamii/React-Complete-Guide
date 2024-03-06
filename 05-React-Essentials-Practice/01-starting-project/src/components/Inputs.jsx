@@ -30,7 +30,7 @@ export default function Inputs({ inputs, onChange, errorMsg }) {
         />
         <Input label="Duration" value={inputs.duration} onChange={(e) => onChange("duration", e)} />
       </div>
-      {errorMsg && <p>{errorMsg}</p>}
+      {errorMsg && <p className="center">{errorMsg}</p>}
     </div>
   );
 }
