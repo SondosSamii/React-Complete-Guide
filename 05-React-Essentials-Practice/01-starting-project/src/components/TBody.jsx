@@ -1,18 +1,20 @@
 import PropTypes from "prop-types";
 
 TBody.propTypes = {
-  years: PropTypes.array.isRequired,
+  results: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
-export default function TBody({ years }) {
-  return years.map((year) => {
+export default function TBody({ results }) {
+  let total_interests = 0;
+  return results.map(({ year, interest, valueEndOfYear }) => {
+    total_interests += interest;
     return (
       <tr key={year}>
         <td>{year}</td>
-        <td>10</td>
-        <td>10</td>
-        <td>10</td>
-        <td>10</td>
+        <td>{valueEndOfYear}</td>
+        <td>{interest}</td>
+        <td>{total_interests}</td>
+        <td>{valueEndOfYear - total_interests}</td>
       </tr>
     );
   });

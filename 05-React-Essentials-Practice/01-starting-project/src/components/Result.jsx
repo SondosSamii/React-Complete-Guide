@@ -2,11 +2,10 @@ import PropTypes from "prop-types";
 import TBody from "./TBody";
 
 Result.propTypes = {
-  years: PropTypes.array.isRequired,
+  results: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
-export default function Result({ years }) {
-
+export default function Result({ results }) {
   return (
     <table id="result">
       <thead>
@@ -19,7 +18,7 @@ export default function Result({ years }) {
         </tr>
       </thead>
       <tbody>
-        <TBody years={years}/>
+        <TBody results={results} />
       </tbody>
     </table>
   );
