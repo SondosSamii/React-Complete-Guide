@@ -1,11 +1,11 @@
 import PropTypes from "prop-types";
 import TBody from "./TBody";
 
-Result.propTypes = {
-  results: PropTypes.arrayOf(PropTypes.object).isRequired,
+Results.propTypes = {
+  inputs: PropTypes.object.isRequired,
 };
 
-export default function Result({ results }) {
+export default function Results({ inputs }) {
   return (
     <table id="result">
       <thead>
@@ -18,7 +18,7 @@ export default function Result({ results }) {
         </tr>
       </thead>
       <tbody>
-        <TBody results={results} />
+        <TBody inputs={inputs} />
       </tbody>
     </table>
   );

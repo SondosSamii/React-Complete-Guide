@@ -1,11 +1,13 @@
 import PropTypes from "prop-types";
-import { formatter } from "../util/investment";
+import { calculateInvestmentResults, formatter } from "../util/investment";
 
 TBody.propTypes = {
-  results: PropTypes.arrayOf(PropTypes.object).isRequired,
+  inputs: PropTypes.object.isRequired,
 };
 
-export default function TBody({ results }) {
+export default function TBody({ inputs }) {
+  const results = calculateInvestmentResults(inputs);
+
   let total_interests = 0;
   return results.map(({ year, interest, valueEndOfYear }) => {
     total_interests += interest;

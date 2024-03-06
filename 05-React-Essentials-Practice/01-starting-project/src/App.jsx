@@ -1,14 +1,12 @@
 import { useState } from "react";
 import Header from "./components/Header";
 import Inputs from "./components/Inputs";
-import Result from "./components/Result";
+import Results from "./components/Results";
 import { INITIAL_INPUTS } from "./constants";
-import { calculateInvestmentResults } from "./util/investment";
 
 function App() {
   const [inputs, setInputs] = useState(INITIAL_INPUTS);
   const [errorMsg, setErrorMsg] = useState("");
-  const results = calculateInvestmentResults(inputs);
 
   function handleChange(element, event) {
     setInputs({ ...inputs, [element]: Number(event.target.value) });
@@ -24,7 +22,7 @@ function App() {
     <>
       <Header />
       <Inputs inputs={inputs} onChange={handleChange} errorMsg={errorMsg} />
-      <Result results={results} />
+      <Results inputs={inputs} />
     </>
   );
 }
