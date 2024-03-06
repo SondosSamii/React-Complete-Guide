@@ -22,7 +22,7 @@ function App() {
     <>
       <Header />
       <Inputs inputs={inputs} onChange={handleChange} errorMsg={errorMsg} />
-      <Results inputs={inputs} />
+      {!errorMsg && <Results inputs={inputs} />}
     </>
   );
 }
