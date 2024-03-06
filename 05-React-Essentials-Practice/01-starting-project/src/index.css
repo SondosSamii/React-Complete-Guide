@@ -45,6 +45,10 @@ body {
   gap: 1.5rem;
 }
 
+.input-group>div {
+  margin-block: 1em;
+}
+
 #user-input label {
   display: block;
   margin-bottom: 0.25rem;
