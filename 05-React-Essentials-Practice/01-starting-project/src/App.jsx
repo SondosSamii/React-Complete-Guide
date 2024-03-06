@@ -7,6 +7,8 @@ import { INITIAL_INPUTS } from "./constants";
 function App() {
   const [inputs, setInputs] = useState(INITIAL_INPUTS);
 
+  const years = Array.from({ length: inputs.duration }, (_, index) => index + 1);
+
   function handleChange(element, event) {
     setInputs({ ...inputs, [element]: event.target.value });
   }
@@ -15,6 +17,7 @@ function App() {
     <>
       <Header />
       <Inputs inputs={inputs} onChange={handleChange} />
+      <Result years={years} />
     </>
   );
 }
