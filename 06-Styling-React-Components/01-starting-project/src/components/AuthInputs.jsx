@@ -65,10 +65,10 @@ const Button = styled.button`
   &.text-button {
     color: #f0b322;
     border: none;
-  }
 
-  &.text-button:hover {
-    color: #f0920e;
+    &:hover {
+      color: #f0920e;
+    }
   }
 `;
 
