@@ -1,11 +1,28 @@
 import { useState } from 'react';
 import styled from "styled-components";
 
-const ControlsContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  margin-bottom: 1.5rem;
+const StyledAuthInputs = styled.div`
+  width: 100%;
+  max-width: 28rem;
+  padding: 2rem;
+  margin: 0 auto;
+  border-radius: 0.5rem;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  background: linear-gradient(180deg, #474232 0%, #28271c 100%);
+  color: white;
+
+  & .controls {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  & .actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+  }
 `;
 
 const Label = styled.label`
@@ -29,6 +46,32 @@ const Input = styled.input`
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
 `;
 
+const Button = styled.button`
+  &.button {
+    padding: 1rem 2rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    border-radius: 0.25rem;
+    color: #1f2937;
+    background-color: #f0b322;
+    border-radius: 6px;
+    border: none;
+
+    &:hover {
+      background-color: #f0920e;
+    }
+  }
+
+  &.text-button {
+    color: #f0b322;
+    border: none;
+  }
+
+  &.text-button:hover {
+    color: #f0920e;
+  }
+`;
+
 export default function AuthInputs() {
   const [enteredEmail, setEnteredEmail] = useState("");
   const [enteredPassword, setEnteredPassword] = useState("");
@@ -50,8 +93,8 @@ export default function AuthInputs() {
   const passwordNotValid = submitted && enteredPassword.trim().length < 6;
 
   return (
-    <div id="auth-inputs">
-      <ControlsContainer>
+    <StyledAuthInputs>
+      <div className="controls">
         <p>
           <Label $invalid={emailNotValid}>Email</Label>
           <Input
@@ -68,15 +111,15 @@ export default function AuthInputs() {
             onChange={(event) => handleInputChange("password", event.target.value)}
           />
         </p>
-      </ControlsContainer>
-      <div className="actions">
-        <button type="button" className="text-button">
-          Create a new account
-        </button>
-        <button className="button" onClick={handleLogin}>
-          Sign In
-        </button>
       </div>
-    </div>
+      <div className="actions">
+        <Button type="button" className="text-button">
+          Create a new account
+        </Button>
+        <Button className="button" onClick={handleLogin}>
+          Sign In
+        </Button>
+      </div>
+    </StyledAuthInputs>
   );
 }
