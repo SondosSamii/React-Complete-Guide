@@ -40,10 +40,10 @@ export default function AuthInputs() {
         />
       </div>
       <div className="flex justify-end gap-4">
-        <Button type="button" customClass="text-button">
+        <button type="button" className="bg-none text-[#f0b322] hover:text-[#f0920e]">
           Create a new account
-        </Button>
-        <Button customClass="button" onClick={handleLogin}>
+        </button>
+        <Button onClick={handleLogin}>
           Sign In
         </Button>
       </div>

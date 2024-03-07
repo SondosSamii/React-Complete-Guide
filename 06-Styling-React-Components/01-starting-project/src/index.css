@@ -14,3 +14,14 @@ body {
   background-attachment: fixed;
   background-size: cover;
 }
+
+button {
+  cursor: pointer;
+  background: none;
+  line-height: inherit;
+}
+
+button:focus {
+  outline: none;
+}
+
