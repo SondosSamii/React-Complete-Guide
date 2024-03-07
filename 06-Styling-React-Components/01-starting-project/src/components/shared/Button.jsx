@@ -1,27 +1,17 @@
-import styled from "styled-components";
+export default function Button({ customClass, children, ...props }) {
+  let buttonClasses =
+    "font-semibold uppercase text-[#1f2937] bg-[#f0b322] hover:bg-[#f0920e] rounded-md py-4 px-8";
 
-export const Button = styled.button`
-  &.button {
-    padding: 1rem 2rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    border-radius: 0.25rem;
-    color: #1f2937;
-    background-color: #f0b322;
-    border-radius: 6px;
-    border: none;
-
-    &:hover {
-      background-color: #f0920e;
-    }
+  if (customClass === "text-button") {
+    buttonClasses = "text-[#f0b322] hover:text-[#f0920e]";
   }
 
-  &.text-button {
-    color: #f0b322;
-    border: none;
-
-    &:hover {
-      color: #f0920e;
-    }
-  }
-`;
+  return (
+    <button
+      className={`cursor-pointer border-0 bg-none focus:outline-none ${buttonClasses}`}
+      {...props}
+    >
+      {children}
+    </button>
+  );
+}

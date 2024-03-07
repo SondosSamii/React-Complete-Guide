@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import styled from "styled-components";
-import { Button } from './shared/Button';
 import LabeledInput from "./shared/LabeledInput";
+import Button from './shared/Button';
 
 const StyledAuthInputs = styled.div`
   width: 100%;
@@ -65,10 +65,10 @@ export default function AuthInputs() {
         />
       </div>
       <div className="actions">
-        <Button type="button" className="text-button">
+        <Button type="button" customClass="text-button">
           Create a new account
         </Button>
-        <Button className="button" onClick={handleLogin}>
+        <Button onClick={handleLogin}>
           Sign In
         </Button>
       </div>
